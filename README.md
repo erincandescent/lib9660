@@ -22,6 +22,9 @@ environments.
 l9660_read will not perform a read from the underlying device as long as the
 request can be answered from its' internal buffer. Be prepared for short reads.
 
+lib9660_open(dir)at use lib9660_readdir internally. Remember to save and 
+restore your seek position if that will be necessary.
+
 ## Tuning parameters
 ### L9660_SINGLEBUFFER
 By default, lib9660 maintains a buffer per open file. This means each file (and 
