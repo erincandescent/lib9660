@@ -18,7 +18,11 @@
 
 #include "lib9660.h"
 #include <string.h>
+
+#ifdef DEBUG
 #include <stdlib.h>
+#endif
+
 #ifdef L9660_HAVE_STDIO
 #include <stdio.h>
 #else
