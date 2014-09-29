@@ -34,21 +34,21 @@
 
 /* Our error return format */
 typedef enum {
-	/*! Success! */
-	L9660_OK = 0,
-	/*! read_sector callback returned false */
-	L9660_EIO,
-	/*! file system is bad */
-	L9660_EBADFS,
-	/*! specified name does not exist */
-	L9660_ENOENT,
-	/*! attempted to open a non-file (e.g. a directory) as a file */ 
-	L9660_ENOTFILE,
-	/*! attempted to open a non-directory (e.g. a file) as a directory
-	 *  may be returned by l9660_openat if e.g. you pass path "a/b" and
-	 *  "a" is a file
-	 */
-	L9660_ENOTDIR,
+    /*! Success! */
+    L9660_OK = 0,
+    /*! read_sector callback returned false */
+    L9660_EIO,
+    /*! file system is bad */
+    L9660_EBADFS,
+    /*! specified name does not exist */
+    L9660_ENOENT,
+    /*! attempted to open a non-file (e.g. a directory) as a file */ 
+    L9660_ENOTFILE,
+    /*! attempted to open a non-directory (e.g. a file) as a directory
+     *  may be returned by l9660_openat if e.g. you pass path "a/b" and
+     *  "a" is a file
+     */
+    L9660_ENOTDIR,
 } l9660_status;
 
 /* ISO9660 uses big/little/dual endian integers */
@@ -155,24 +155,24 @@ typedef struct l9660_fs {
 
 typedef struct {
 #ifndef L9660_SINGLEBUFFER
-	/* single sector buffer */
-	char buf[2048];
+    /* single sector buffer */
+    char buf[2048];
 #endif
-	l9660_fs *fs;
-	uint32_t first_sector;
-	uint32_t position;
-	uint32_t length;
+    l9660_fs *fs;
+    uint32_t first_sector;
+    uint32_t position;
+    uint32_t length;
 } l9660_file;
 
 typedef struct {
-	/* directories are mostly just files with special accessors, but we like type safetey */
-	l9660_file file;
+    /* directories are mostly just files with special accessors, but we like type safetey */
+    l9660_file file;
 } l9660_dir;
 
 /* Open a file system, initialising *fs. */
 l9660_status l9660_openfs(
-	l9660_fs *fs,
-	bool (*read_sector)(l9660_fs *fs, void *buf, uint32_t sector));
+    l9660_fs *fs,
+    bool (*read_sector)(l9660_fs *fs, void *buf, uint32_t sector));
 
 /*void l9660_closefs(l9660_fs *fs); (nop) */ 
 
