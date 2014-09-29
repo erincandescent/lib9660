@@ -258,8 +258,7 @@ rebuffer:
     if ((rv = prebuffer(f)))
         return rv;
 
-    char *off = BUF(f)
-     + fsectoff(f);
+    char *off = BUF(f) + fsectoff(f);
     if (*off == 0) {
         // Padded end of sector
         f->position = fnextsectpos(f);
