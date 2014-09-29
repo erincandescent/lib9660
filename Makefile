@@ -4,7 +4,7 @@
 .PHONY: all clean install
 
 PREFIX = /usr/local
-CFLAGS = -DL9660_HAVE_STDIO -g -DDEBUG 
+CFLAGS = -DL9660_HAVE_STDIO -g -DDEBUG -DL9660_SINGLEBUFFER
 #-O1 -DNDEBUG
 
 OBJS := lib9660.o
@@ -19,7 +19,7 @@ lib9660.a: $(OBJS)
 	ar cru lib9660.a $(OBJS)
 
 tb9660: tb9660.c lib9660.a
-	$(CC) -DL9660_HAVE_STDIO -g -o tb9660 tb9660.c lib9660.a
+	$(CC) -g -o tb9660 tb9660.c lib9660.a $(CFLAGS)
 
 clean:
 	rm $(ALL) $(OBJS)

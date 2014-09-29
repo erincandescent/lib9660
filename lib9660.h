@@ -139,16 +139,25 @@ typedef union {
  * private data
  */
 typedef struct l9660_fs {
+#ifdef L9660_SINGLEBUFFER
+    union {
+        l9660_dirent    root_dir_ent;
+        char            root_dir_pad[34];
+    };
+#else
     /* Sector buffer to hold the PVD */
     l9660_vdesc pvd;
+#endif
 
     /* read_sector func */
     bool (*read_sector)(struct l9660_fs *fs, void *buf, uint32_t sector);
 } l9660_fs;
 
 typedef struct {
+#ifndef L9660_SINGLEBUFFER
 	/* single sector buffer */
 	char buf[2048];
+#endif
 	l9660_fs *fs;
 	uint32_t first_sector;
 	uint32_t position;
