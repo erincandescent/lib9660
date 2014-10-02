@@ -1,0 +1,4 @@
+SubDir LIB9660_TOP ;
+SubDirCcFlags -std=c99 ;
+
+Library lib9660 : lib9660.c ;
