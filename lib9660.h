@@ -1,18 +1,18 @@
-/* lib9660: a simple ISO9660 reader library especially suited to embedded 
+/* lib9660: a simple ISO9660 reader library especially suited to embedded
  *          systems
  *
  * Copyright © 2014, Owen Shepherd
- * 
- * Permission to use, copy, modify, and/or distribute this software for any 
- * purpose with or without fee is hereby granted, provided that the above 
- * copyright notice and this permission notice appear in all copies.
  *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH 
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR 
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR 
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice appears in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
  * PERFORMANCE OF THIS SOFTWARE.
  */
 #ifndef LIB9660_H
@@ -42,7 +42,7 @@ typedef enum {
     L9660_EBADFS,
     /*! specified name does not exist */
     L9660_ENOENT,
-    /*! attempted to open a non-file (e.g. a directory) as a file */ 
+    /*! attempted to open a non-file (e.g. a directory) as a file */
     L9660_ENOTFILE,
     /*! attempted to open a non-directory (e.g. a file) as a directory
      *  may be returned by l9660_openat if e.g. you pass path "a/b" and
@@ -174,7 +174,7 @@ l9660_status l9660_openfs(
     l9660_fs *fs,
     bool (*read_sector)(l9660_fs *fs, void *buf, uint32_t sector));
 
-/*void l9660_closefs(l9660_fs *fs); (nop) */ 
+/*void l9660_closefs(l9660_fs *fs); (nop) */
 
 /*! Open the root directory */
 l9660_status l9660_fs_open_root(l9660_dir *dir, l9660_fs *fs);
@@ -191,11 +191,11 @@ l9660_status l9660_readdir(l9660_dir *dir, l9660_dirent **dirent);
 /*! Open the file given by \p path in \p parent */
 l9660_status l9660_openat(l9660_file *file, l9660_dir *parent, const char *path);
 
-/*! Read \p size bytes into \p buf. The number of bytes read will be returned in 
+/*! Read \p size bytes into \p buf. The number of bytes read will be returned in
  *  \p *read. May be less than \p size (but only 0 on EOF)
  */
 l9660_status l9660_read(l9660_file *file, void* buf, size_t size, size_t *read);
-/*! Seek the file to \p offset from \p whence */ 
+/*! Seek the file to \p offset from \p whence */
 l9660_status l9660_seek(l9660_file *file, int whence, int32_t offset);
 /*! Return the current position (suitable for passing to l9660_seek(file, SEEK_SET, ...)) */
 uint32_t     l9660_tell(l9660_file *file);

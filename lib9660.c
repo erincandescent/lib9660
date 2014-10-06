@@ -1,18 +1,18 @@
-/* lib9660: a simple ISO9660 reader library especially suited to embedded 
+/* lib9660: a simple ISO9660 reader library especially suited to embedded
  *          systems
  *
  * Copyright © 2014, Owen Shepherd
- * 
- * Permission to use, copy, modify, and/or distribute this software for any 
- * purpose with or without fee is hereby granted, provided that the above 
- * copyright notice and this permission notice appear in all copies.
  *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH 
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, 
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM 
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR 
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR 
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice appears in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
@@ -43,7 +43,7 @@
 #ifdef L9660_BIG_ENDIAN
 #define READ16(v) (((v).be[1]) | ((v).be[0] << 8))
 #define READ32(v) (((v).be[3]) | ((v).be[2] << 8) | ((v).be[1]) << 16 | ((v).be[0] << 24))
-#else 
+#else
 #define READ16(v) (((v).le[0]) | ((v).le[1] << 8))
 #define READ32(v) (((v).le[0]) | ((v).le[1] << 8) | ((v).le[2]) << 16 | ((v).le[3] << 24))
 #endif
@@ -147,7 +147,7 @@ static l9660_status buffer(l9660_file *f)
 
 static l9660_status prebuffer(l9660_file *f)
 {
-    if (!HAVEBUFFER(f) || (f->position % 2048) == 0) 
+    if (!HAVEBUFFER(f) || (f->position % 2048) == 0)
         return buffer(f);
     else return L9660_OK;
 }
@@ -190,7 +190,7 @@ static l9660_status openat_raw(l9660_file *child, l9660_dir *parent, const char 
         }
 
         for(;;) {
-            if ((rv = l9660_readdir(parent, &dent))) 
+            if ((rv = l9660_readdir(parent, &dent)))
                 return rv;
 
             /* EOD */
@@ -226,7 +226,7 @@ static l9660_status openat_raw(l9660_file *child, l9660_dir *parent, const char 
             return L9660_ENOTDIR;
 
         parent = (l9660_dir*) child;
-    } while(*name); 
+    } while(*name);
 
     if (isdir) {
         if ((dent->flags & DENT_ISDIR) == 0)
@@ -281,7 +281,7 @@ l9660_status l9660_openat(l9660_file *child, l9660_dir *parent, const char * nam
     return openat_raw(child, parent, name, false);
 }
 
-/*! Seek the file to \p offset from \p whence */ 
+/*! Seek the file to \p offset from \p whence */
 l9660_status l9660_seek(l9660_file *f, int whence, int32_t offset)
 {
     l9660_status rv;
@@ -322,9 +322,9 @@ l9660_status l9660_read(l9660_file *f, void* buf, size_t size, size_t *read)
         return rv;
 
     uint16_t rem = 2048 - fsectoff(f);
-    if (rem > f->length - f->position) 
+    if (rem > f->length - f->position)
         rem = f->length - f->position;
-    if (rem < size) 
+    if (rem < size)
         size = rem;
 
     memcpy(buf, BUF(f) + fsectoff(f), size);
