@@ -1,7 +1,8 @@
 /* lib9660: a simple ISO9660 reader library especially suited to embedded
  *          systems
  *
- * Copyright © 2014, Owen Shepherd
+ * SPDX-License-Identifier: LicenseRef-ISC1
+ * SPDX-FileCopyrightText: © 2014 Erin Shepherd
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above

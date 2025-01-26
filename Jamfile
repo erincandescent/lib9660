@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: NONE
+# SPDX-License-Identifier: LicenseRef-ISC0
+
 SubDir LIB9660_TOP ;
 SubDirCcFlags -std=c99 $(LIB9660_OPTS) ;
 

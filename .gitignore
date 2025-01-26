@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: NONE
+# SPDX-License-Identifier: LicenseRef-ISC0
+*.o
+*.a
+*.dSYM
+tb9660

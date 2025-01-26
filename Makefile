@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: © 2014 Erin Shepherd
+# SPDX-License-Identifier: LicenseRef-ISC0
+
 .POSIX:
 .SUFFIXES:
 .SUFFIXES: .o .c
