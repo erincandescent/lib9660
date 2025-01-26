@@ -2,7 +2,7 @@
  *          systems
  *
  * SPDX-License-Identifier: LicenseRef-ISC0
- * SPDX-FileCopyrightText: Copyright © 2014 Erin Shepherd
+ * SPDX-FileCopyrightText: Copyright © 2014, 2025 Erin Shepherd
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted without restriction.
@@ -28,7 +28,7 @@ l9660_file file;
 
 static bool readsect(l9660_fs *fs, void *buf, uint32_t sector)
 {
-    if (fseek(isof, 2048 * sector, SEEK_SET)) {
+    if (fseek(isof, 2048 * (long)sector, SEEK_SET)) {
         fprintf(stderr, "Reading sector %u\n", sector);
         perror("fseek");
         return false;
